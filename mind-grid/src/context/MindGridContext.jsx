@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useReducer } from 'react'
-import { loadState, saveState } from '../services/storage'
+import { loadState, logout, saveState } from '../services/storage'
 
 const MindGridContext = createContext(null)
 
@@ -18,7 +18,10 @@ function reducer(state, action) {
       return { ...state, goals: [...state.goals, action.goal] }
     case 'SET_PROFILE':
       return { ...state, profile: action.profile }
+    case 'LOAD_STATE':
+      return action.state
     case 'LOGOUT':
+      logout()
       return { ...state, profile: null }
     case 'ADD_RESOURCE':
       return { ...state, resources: [action.resource, ...state.resources] }

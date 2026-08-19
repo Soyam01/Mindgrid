@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
-import { BookOpen, Boxes, Command, Flag, Grid3X3, Menu, NotebookPen, Search, Target, UserCircle, X } from 'lucide-react'
+import { BookOpen, Boxes, Command, Flag, Grid3X3, LogOut, Menu, NotebookPen, Search, Target, UserCircle, X } from 'lucide-react'
 import { useMindGrid } from '../../context/MindGridContext'
 
 const nav = [
@@ -14,7 +14,7 @@ const nav = [
 ]
 
 export default function AppShell() {
-  const { state } = useMindGrid()
+  const { state, dispatch } = useMindGrid()
   const navigate = useNavigate()
   const [searchOpen, setSearchOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -45,6 +45,12 @@ export default function AppShell() {
     setSearchOpen(false)
   }
 
+  function signOut() {
+    dispatch({ type: 'LOGOUT' })
+    navigate('/login')
+    setMobileOpen(false)
+  }
+
   return (
     <div className="app-shell">
       <aside className={`rail ${mobileOpen ? 'rail-open' : ''}`}>
@@ -52,7 +58,7 @@ export default function AppShell() {
         <nav aria-label="Primary navigation">
           {nav.map(([to, label, Icon]) => <NavLink key={to} to={to} end={to === '/'} onClick={() => setMobileOpen(false)}><Icon size={18} /><span>{label}</span></NavLink>)}
         </nav>
-        <div className="rail-footer"><NavLink className="profile-link" to={state.profile ? '/profile' : '/login'} onClick={() => setMobileOpen(false)}><UserCircle size={17} /><span>{state.profile ? state.profile.name : 'Local profile'}</span><small>{state.profile ? 'Profile' : 'Sign in'}</small></NavLink><span>LOCAL SYSTEM</span><strong><i /> SYNCED</strong></div>
+        <div className="rail-footer"><NavLink className="profile-link" to="/profile" onClick={() => setMobileOpen(false)}><UserCircle size={17} /><span>{state.profile.name}</span><small>Profile</small></NavLink><button className="logout-button" onClick={signOut}><LogOut size={14} /> Sign out</button><span>LOCAL SYSTEM</span><strong><i /> SYNCED</strong></div>
       </aside>
       <div className="workspace">
         <header className="topbar">

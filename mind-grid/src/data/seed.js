@@ -34,7 +34,7 @@ const resources = [
 ]
 
 const evidence = [
-  { id: 'e1', skillId: 'hooks', type: 'Project', title: 'Movie collection manager', detail: 'Built filtering, persistence, and reusable state hooks.', url: 'https://github.com/', confidence: 4, date: '2026-08-11' },
+  { id: 'e1', skillId: 'hooks', type: 'Project', title: 'Mind Grid', detail: 'Built filtering, persistence, and reusable state hooks.', url: 'https://github.com/', confidence: 4, date: '2026-08-11' },
   { id: 'e2', skillId: 'effects', type: 'Implementation', title: 'Abortable API loading state', detail: 'Handled race conditions and cleanup during request changes.', url: '', confidence: 4, date: '2026-08-13' },
   { id: 'e3', skillId: 'css', type: 'Project', title: 'Responsive editorial layout', detail: 'Built fluid layouts without breakpoint-specific duplication.', url: '', confidence: 5, date: '2026-08-05' },
   { id: 'e4', skillId: 'javascript', type: 'Challenge', title: 'Promise concurrency utilities', detail: 'Implemented all, allSettled, and bounded concurrency helpers.', url: '', confidence: 4, date: '2026-08-09' },
